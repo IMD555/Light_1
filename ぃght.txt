@@ -1,0 +1,22 @@
+20mΩ 1A → 20mV? 20mW
+20倍にすると400mV ①
+
+PICのADC
+10bits
+FS2.048Vとすると 2mV/LSB ②
+
+DAC
+5bits
+FS2.048Vとすると 64mV/LSB
+10bits
+FS2.048Vとすると 2mV/LSB
+
+①②→200段階・・・
+
+INA138
+最大電位差0.5V
+
+PWMが100kHz(T=10us)、電流変動5%(50mA)以内としたら
+電源最大17Vくらい
+5V = L * 0.05A / 0.00001s
+コイル L = 1mH
