@@ -1,0 +1,8 @@
+.vscode/
+build/
+debug/
+disassembly/
+# dist/
+nbproject/
+report/
+# .gitignore

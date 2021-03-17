@@ -1,5 +1,5 @@
 /*
- * File:   newmain.c
+ * File:   main.c
  * Author: imada
  *
  * Created on 2021/03/02, 0:01

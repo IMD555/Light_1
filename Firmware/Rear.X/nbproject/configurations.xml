@@ -5,7 +5,8 @@
                    displayName="Header Files"
                    projectFiles="true">
       <itemPath>MAX17320.h</itemPath>
-      <itemPath>MAX17345.h</itemPath>
+      <itemPath>onewire.h</itemPath>
+      <itemPath>MAX17435.h</itemPath>
     </logicalFolder>
     <logicalFolder name="LinkerScript"
                    displayName="Linker Files"
@@ -16,7 +17,8 @@
                    projectFiles="true">
       <itemPath>MAX17320.c</itemPath>
       <itemPath>MAX17435.c</itemPath>
-      <itemPath>newmain.c</itemPath>
+      <itemPath>onewire.c</itemPath>
+      <itemPath>main.c</itemPath>
     </logicalFolder>
     <logicalFolder name="ExternalFiles"
                    displayName="Important Files"
@@ -24,6 +26,9 @@
       <itemPath>Makefile</itemPath>
     </logicalFolder>
   </logicalFolder>
+  <sourceRootList>
+    <Elem>.</Elem>
+  </sourceRootList>
   <projectmakefile>Makefile</projectmakefile>
   <confs>
     <conf name="default" type="2">
