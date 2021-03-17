@@ -1,5 +1,5 @@
+#include <xc.h>
 #include <stdio.h>
-#include <pic18lf67k40.h>
 
 #define ERROR	1
 #define OK		0
@@ -54,7 +54,7 @@ unsigned char i2c_write_byte(unsigned char data)
 	return SSP1CON2bits.ACKSTAT;
 }
 
-unsigned char MAX17345_read_word(unsigned short command, unsigned short *data)
+unsigned char MAX17435_read_word(unsigned short command, unsigned short *data)
 {
 	unsigned char r = 0;
 	unsigned char dataH = 0;
@@ -74,7 +74,7 @@ unsigned char MAX17345_read_word(unsigned short command, unsigned short *data)
 	return OK;
 }
 
-unsigned char MAX17345_write_word(unsigned short command, unsigned short data)
+unsigned char MAX17435_write_word(unsigned short command, unsigned short data)
 {
 	unsigned char r = 0;
 
@@ -87,74 +87,74 @@ unsigned char MAX17345_write_word(unsigned short command, unsigned short data)
 	return OK;
 }
 
-//unsigned char MAX17345_get_status(unsigned short *status)
+//unsigned char MAX17435_get_status(unsigned short *status)
 //{
 //
 //}
 
-unsigned char MAX17345_get_Dev_ID(unsigned short *id)
+unsigned char MAX17435_get_Dev_ID(unsigned short *id)
 {
 	unsigned char r = 0;
 
-	r = MAX17345_read_word(0xFF, id);
+	r = MAX17435_read_word(0xFF, id);
 	return r;
 }
 
-unsigned char MAX17345_get_IINPVoltage(unsigned short *iinpv)
+unsigned char MAX17435_get_IINPVoltage(unsigned short *iinpv)
 {
 	unsigned char r = 0;
 
-	r = MAX17345_read_word(0x3E, iinpv);
+	r = MAX17435_read_word(0x3E, iinpv);
 	return r;
 }
 
-unsigned char MAX17345_set_charge_current(unsigned short charge_current)
+unsigned char MAX17435_set_charge_current(unsigned short charge_current)
 {
 	unsigned char r = 0;
 
-	r = MAX17345_write_word(0x14, charge_current);
+	r = MAX17435_write_word(0x14, charge_current);
 	return r;
 }
 
-unsigned char MAX17345_set_charge_voltage(unsigned short charge_voltage)
+unsigned char MAX17435_set_charge_voltage(unsigned short charge_voltage)
 {
 	unsigned char r = 0;
 
-	r = MAX17345_write_word(0x15, charge_voltage);
+	r = MAX17435_write_word(0x15, charge_voltage);
 	return r;
 }
 
-unsigned char MAX17345_set_input_current(unsigned short input_current)
+unsigned char MAX17435_set_input_current(unsigned short input_current)
 {
 	unsigned char r = 0;
 
-	r = MAX17345_write_word(0x3F, input_current);
+	r = MAX17435_write_word(0x3F, input_current);
 	return r;
 }
 
-unsigned char MAX17345_set_relearn_voltage(unsigned short relearn_voltage)
+unsigned char MAX17435_set_relearn_voltage(unsigned short relearn_voltage)
 {
 	unsigned char r = 0;
 
-	r = MAX17345_write_word(0x3D, relearn_voltage);
+	r = MAX17435_write_word(0x3D, relearn_voltage);
 	return r;
 }
 
-void MAX17345_dump(void)
+void MAX17435_dump(void)
 {
     unsigned short data = 0;
 	
-//	MAX17345_set_charge_voltage(16400&0x7ff0);
-//	MAX17345_set_charge_current((1024-128)&0x1f80);
+//	MAX17435_set_charge_voltage(16400&0x7ff0);
+//	MAX17435_set_charge_current((1024-128)&0x1f80);
 	
-    printf("\nMAX17345\n");
-    if(!MAX17345_read_word(0x14,&data)){printf("ChargeCurrent  =%04x\n",data);}
-    if(!MAX17345_read_word(0x15,&data)){printf("ChargeVoltage  =%04x\n",data);}
-    if(!MAX17345_read_word(0x3d,&data)){printf("Relearn Voltage=%04x\n",data);}
-    if(!MAX17345_read_word(0x3e,&data)){printf("IINPVoltage    =%04x %5d[mA]\n",data,data*80);}
-    if(!MAX17345_read_word(0x3f,&data)){printf("InputCurrent   =%04x %5d[mA]\n",data,data*2);}
-//    if(!MAX17345_read_word(0xfe,&data)){printf("ManufacturerID =%04x\n",data);}
-//    if(!MAX17345_read_word(0xff,&data)){printf("DeviceID       =%04x\n",data);}
+    printf("\nMAX17435\n");
+    if(!MAX17435_read_word(0x14,&data)){printf("ChargeCurrent  =%04x\n",data);}
+    if(!MAX17435_read_word(0x15,&data)){printf("ChargeVoltage  =%04x\n",data);}
+    if(!MAX17435_read_word(0x3d,&data)){printf("Relearn Voltage=%04x\n",data);}
+    if(!MAX17435_read_word(0x3e,&data)){printf("IINPVoltage    =%04x %5d[mA]\n",data,data*80);}
+    if(!MAX17435_read_word(0x3f,&data)){printf("InputCurrent   =%04x %5d[mA]\n",data,data*2);}
+//    if(!MAX17435_read_word(0xfe,&data)){printf("ManufacturerID =%04x\n",data);}
+//    if(!MAX17435_read_word(0xff,&data)){printf("DeviceID       =%04x\n",data);}
 	
 	// 10mR (12.8/16) V/LSB
 // I = IINPVoltage()/16*12.8mV/10mR [A]
@@ -163,7 +163,7 @@ void MAX17345_dump(void)
 //   = IINPVoltage()*80 [mA]
 }
 
-unsigned char MAX17345_init(void)
+unsigned char MAX17435_init(void)
 {
 	unsigned char r = 0;
 	unsigned short data;
@@ -183,22 +183,22 @@ unsigned char MAX17345_init(void)
 	SSP1ADD = 255;	
 	SSP1CON1bits.SSPEN = 1;
 	
-	MAX17345_dump();
+	MAX17435_dump();
 	
 //	while(1);
 	
-	if((r = MAX17345_set_input_current(512)))return r; //1024mA
-	if((r = MAX17345_set_charge_voltage(16400&0x7ff0)))return r;
-//	if((r = MAX17345_set_charge_current((1024-128)&0x1f80)))return r;
-	if((r = MAX17345_set_charge_current((512)&0x1f80)))return r;
-//	if((r = MAX17345_set_charge_current((256)&0x1f80)))return r;
-	if((r = MAX17345_set_relearn_voltage(16001&0x7ff1)))return r;
+	if((r = MAX17435_set_input_current(512)))return r; //1024mA
+	if((r = MAX17435_set_charge_voltage(16400&0x7ff0)))return r;
+//	if((r = MAX17435_set_charge_current((1024-128)&0x1f80)))return r;
+	if((r = MAX17435_set_charge_current((512)&0x1f80)))return r;
+//	if((r = MAX17435_set_charge_current((256)&0x1f80)))return r;
+	if((r = MAX17435_set_relearn_voltage(16001&0x7ff1)))return r;
 	
-//	if((r = MAX17345_set_input_current(4096)))return r; //1024mA
-//	if((r = MAX17345_set_charge_voltage(16400)))return r;
-//	if((r = MAX17345_set_charge_current((128)&0x1f80)))return r;
-//	if((r = MAX17345_set_relearn_voltage(16000&0x7ff1)))return r;
+//	if((r = MAX17435_set_input_current(4096)))return r; //1024mA
+//	if((r = MAX17435_set_charge_voltage(16400)))return r;
+//	if((r = MAX17435_set_charge_current((128)&0x1f80)))return r;
+//	if((r = MAX17435_set_relearn_voltage(16000&0x7ff1)))return r;
 	
-	MAX17345_dump();
+	MAX17435_dump();
 	return OK;
 }

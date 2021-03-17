@@ -1,0 +1,22 @@
+{
+	"files.associations": {
+		"max17320.h": "c",
+		"stdio.h": "c",
+		"xc.h": "c",
+		"pic.h": "c",
+		"pic18.h": "c",
+		"max17435.h": "c"
+	},"files.exclude": {
+		"**/.git": true,
+		"**/.svn": true,
+		"**/.hg": true,
+		"**/CVS": true,
+		"**/.DS_Store": true,
+		"**/disassembly":true,
+		"**/nbproject":true,
+		"**/dist":true,
+		"**/build":true,
+		"**/report":true,
+		"**/debug":true
+	}
+}

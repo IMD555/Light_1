@@ -7,7 +7,7 @@
 
 #include <xc.h>
 #include "MAX17320.h"
-#include "MAX17345.h"
+#include "MAX17435.h"
 
 // PIC18LF67K40 Configuration Bit Settings
 
@@ -79,7 +79,6 @@
 
 // CONFIG6H
 #pragma config EBTRB = OFF      // Boot Block Table Read Protection bit (Boot Block (000000-0007FFh) not protected from table reads executed in other blocks)
-
 
 
 #define	USB_CBUS0		RF6

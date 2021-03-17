@@ -1,0 +1,43 @@
+{
+    "env": {
+        "XC8": "C:\\Program Files\\Microchip\\xc8\\v2.32",
+        "XC8_include": "${env:xc8}\\pic\\include",
+        "DFP_include": "C:\\Program Files\\Microchip\\MPLABX\\v5.45\\packs\\Microchip\\PIC18F-K_DFP\\1.4.87\\xc8\\pic\\include"
+    },
+    "configurations": [
+        {
+            "name": "XC8",
+            "includePath": [
+                "${workspaceFolder}",
+                // "${env:XC8_include}",
+                // "${env:XC8_include}\\c99",
+                "${env:DFP_include}",
+                "${env:DFP_include}\\proc",
+                "${env:DFP_include}\\c99"
+            ],
+            "browse": {
+                "path": [
+                    "${workspaceFolder}",
+                    // "${workspaceFolder}\\**",
+                    // "${env:XC8_include}",
+                    // "${env:XC8_include}\\c99",
+                    "${env:DFP_include}",
+                    "${env:DFP_include}\\proc",
+                    "${env:DFP_include}\\c99"
+                ],
+                "databaseFilename": "",
+                "limitSymbolsToIncludedHeaders": true
+            },
+            "defines": [
+                "__XC8",
+                "__PICC18__",
+                "_18LF67K40"
+            ],
+            "cStandard": "c99",
+            "cppStandard": "c++17",
+            "intelliSenseMode": "gcc-x64",
+            "compilerPath": "${env:XC8}\\bin\\xc8.exe"
+        }
+    ],
+    "version": 4
+}
